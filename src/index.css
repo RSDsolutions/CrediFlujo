@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Sora:wght@700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-deep: #0D1829;
+  --color-navy-brand: rgba(27, 42, 74, 0.8);
+  --color-navy-mid: #243860;
+  --color-navy-border: rgba(46, 72, 128, 0.5);
+  --color-navy-hover: #1A3050;
+
+  --color-green-primary: #3DB82A;
+  --color-green-gradient-start: #3DB82A;
+  --color-green-gradient-end: #1A7A0A;
+  --color-green-hover: #2EA020;
+  --color-green-dim: #5ACF46;
+
+  --color-off-white: #F0F4FF;
+  --color-light-blue: rgba(27, 42, 74, 0.5);
+  --color-very-light: rgba(13, 24, 41, 0.7);
+  --color-muted-dark: #8A9AB0;
+  --color-muted-light: #8A9AB0;
+  --color-text-dark: #F0F4FF;
+
+  --color-amber-urgency: #F5A623;
+  --color-amber-hover: #D4880A;
+
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+}
+
+/* ─── Global Enhancements ─────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0D1829;
+}
+::-webkit-scrollbar-thumb {
+  background: #243860;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3DB82A;
+}
+
+/* Selection */
+::selection {
+  background: rgba(61, 184, 42, 0.25);
+  color: #F0F4FF;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #3DB82A;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Keyframe Animations ─────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(61,184,42,0.3), 0 0 40px rgba(61,184,42,0.1); }
+  50%       { box-shadow: 0 0 40px rgba(61,184,42,0.6), 0 0 80px rgba(61,184,42,0.2); }
+}
+
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Animation Utility Classes ──────────────────────────── */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-fade-in-down {
+  animation: fadeInDown 0.4s ease both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.5s ease both;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+.animate-glow {
+  animation: glow 2.5s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* ─── Range Input Styling ─────────────────────────────────── */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+input[type="range"]:hover {
+  opacity: 0.95;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #3DB82A;
+  cursor: pointer;
+  border: 3px solid #0D1829;
+  box-shadow: 0 0 12px rgba(61, 184, 42, 0.5), 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 24px rgba(61, 184, 42, 0.8), 0 4px 12px rgba(0,0,0,0.4);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #3DB82A;
+  cursor: pointer;
+  border: 3px solid #0D1829;
+  box-shadow: 0 0 12px rgba(61, 184, 42, 0.5);
+  transition: transform 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* ─── Button / Interaction Utilities ─────────────────────── */
+
+.btn-press {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-press:active {
+  transform: scale(0.96) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.btn-shimmer:hover::after {
+  animation: shimmer 0.65s ease forwards;
+}
+
+/* ─── Card Hover Effects ──────────────────────────────────── */
+
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 28px 56px rgba(0,0,0,0.45), 0 0 24px rgba(61,184,42,0.12);
+}
+
+/* ─── Link Underline Hover ────────────────────────────────── */
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #3DB82A;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ─── Existing Custom Utilities ───────────────────────────── */
+
+@layer utilities {
+  .bg-white {
+    background-color: rgba(27, 42, 74, 0.6) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(46, 72, 128, 0.5) !important;
+    color: #F0F4FF !important;
+  }
+  .bg-hero-gradient {
+    background: transparent;
+  }
+  .bg-green-cta {
+    background: linear-gradient(135deg, #3DB82A 0%, #1A7A0A 100%);
+  }
+  .bg-navy-card {
+    background-color: rgba(27, 42, 74, 0.8);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(61, 184, 42, 0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(61,184,42,0.1);
+  }
+  .text-green-gradient {
+    background: linear-gradient(135deg, #3DB82A 0%, #1A7A0A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ─── FAQ / Details Animation ────────────────────────────── */
+
+details summary {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+details[open] > *:not(summary) {
+  animation: fadeInUp 0.3s ease both;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ─── Form Input Enhancements ────────────────────────────── */
+
+input, select, textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(61, 184, 42, 0.15);
+}
+
+/* Date input icon color */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6) sepia(1) saturate(5) hue-rotate(80deg);
+  cursor: pointer;
+}
+
+/* Select arrow */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238A9AB0' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 40px !important;
+}
+
+/* ─── Gradient Borders ───────────────────────────────────── */
+
+.border-gradient-green {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.border-gradient-green::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #3DB82A, #1A7A0A);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── WhatsApp Float Button ──────────────────────────────── */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 60;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5), 0 2px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.7), 0 4px 16px rgba(0,0,0,0.3);
+}
+.whatsapp-float:active {
+  transform: scale(1.02);
+}
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.3);
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  pointer-events: none;
+}
+
+/* ─── Scroll-to-top button ───────────────────────────────── */
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  z-index: 59;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(27, 42, 74, 0.9);
+  border: 1px solid rgba(61, 184, 42, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.2s,
+              border-color 0.2s,
+              opacity 0.3s;
+  color: #3DB82A;
+}
+.scroll-top-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  background: rgba(61, 184, 42, 0.15);
+  border-color: #3DB82A;
+}
+
+/* ─── Navbar enhancement ─────────────────────────────────── */
+
+.navbar-scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(61,184,42,0.1);
+  background: rgba(13, 24, 41, 0.95) !important;
+}
+
+/* Mobile menu animation */
+.mobile-menu-enter {
+  animation: fadeInDown 0.3s ease both;
+}
+
+/* ─── Stat Counter Animation ─────────────────────────────── */
+
+.stat-number {
+  animation: count-up 0.5s ease both;
+}
+
+/* ─── Progress bar shimmer ───────────────────────────────── */
+
+.progress-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.progress-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  animation: shimmer 1.5s ease infinite;
+}
