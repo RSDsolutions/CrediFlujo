@@ -1,6 +1,4 @@
 {
-  "name": "CreditoFlujo Préstamos",
-  "description": "Tu crédito, en tu tiempo. Préstamos personales rápidos, seguros y 100% en línea para ecuatorianos.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "CrediFlujo",
+  "description": "Tu crédito, en tu tiempo. Préstamos personales rápidos, seguros y 100% en línea para ecuatorianos."
 }
